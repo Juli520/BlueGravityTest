@@ -38,4 +38,6 @@ public enum NameEvent
     OnClotheSold,
     OnMoneyUpdated,
     OnInventoryOpened,
+    OnInventoryClosed,
+    OnClotheTypeChanged,
 }

@@ -47,8 +47,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a0c7feebc7073439cd50f0a9832999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clothes: []
+  _clothes:
+  - {fileID: 11400000, guid: 6470fe136dc9e6b4aa835714c0d42adc, type: 2}
+  - {fileID: 11400000, guid: f4777e0e989c7dc45a87527b0fdba744, type: 2}
+  - {fileID: 11400000, guid: b40ced72c5672904d8d1ba395ba1a08e, type: 2}
+  - {fileID: 11400000, guid: 68a5c0e3d14f0624e8809924eb003bed, type: 2}
+  - {fileID: 11400000, guid: 3147835013e794e45a1056a97d8232dd, type: 2}
+  - {fileID: 11400000, guid: 2b5a6b1736af91746baa8aa1204e6797, type: 2}
+  - {fileID: 11400000, guid: 3661cafc20112064ab0b6122c5a65b9f, type: 2}
+  - {fileID: 11400000, guid: 690b10249275c7d4c9b003071b43b9d7, type: 2}
+  - {fileID: 11400000, guid: 2d86f608587701546bcfae0b2e8901cb, type: 2}
+  - {fileID: 11400000, guid: 399536eb39a2d6f409d076dd110e0697, type: 2}
+  - {fileID: 11400000, guid: a7f298ac92c7eb04c9600fdfe2af7bbd, type: 2}
+  - {fileID: 11400000, guid: 8b5b430f477ebcc409d4ee4131eec95b, type: 2}
+  - {fileID: 11400000, guid: 8f9ca5ece9dda434986a69c087aaddbe, type: 2}
+  - {fileID: 11400000, guid: 5e82028ec40773b4e80710c61f26a3dd, type: 2}
+  - {fileID: 11400000, guid: a7939b4dd5b68f54887c315d7b30d831, type: 2}
+  - {fileID: 11400000, guid: d72919d14c028df4e91e83a4ae7e916b, type: 2}
+  - {fileID: 11400000, guid: 6a066abea76d037408f35e3563d9088c, type: 2}
+  - {fileID: 11400000, guid: 09328c123ea65ca4a8aed5c378c2ce00, type: 2}
+  - {fileID: 11400000, guid: 7d644152a4042e0449f2aa6e53c56165, type: 2}
+  - {fileID: 11400000, guid: df98e07888700d2418a96fa3ae246a86, type: 2}
+  - {fileID: 11400000, guid: 129c0f2975d918f4098d506e10fbac67, type: 2}
+  - {fileID: 11400000, guid: d1b18a1a1400f734da322ebb1261ce10, type: 2}
+  - {fileID: 11400000, guid: b13ec79ad745b9c4d8a88a928d3e85ca, type: 2}
+  - {fileID: 11400000, guid: db90de3fc2535f64194b26037886e75c, type: 2}
+  - {fileID: 11400000, guid: 9bced715384e85143b8cae21783e3a35, type: 2}
+  - {fileID: 11400000, guid: 3ebf7a1d784139142b9e34ffd5a052c3, type: 2}
+  - {fileID: 11400000, guid: 35fffe0d056d323438e2cf9aea0e40c9, type: 2}
+  - {fileID: 11400000, guid: 446f64d018642a048aea86c2fa71f654, type: 2}
+  - {fileID: 11400000, guid: 54054de77ce2e69438a00e329d07397f, type: 2}
+  - {fileID: 11400000, guid: 641ae23baa4750f47a6fd0e657eebfa0, type: 2}
+  - {fileID: 11400000, guid: a481fad9425702e4ead15cf30ced7a60, type: 2}
+  - {fileID: 11400000, guid: bfbf64c546d691441a24b4795272f2dd, type: 2}
+  - {fileID: 11400000, guid: 9abd9e5ae596b7e42937d63a4bc27133, type: 2}
+  - {fileID: 11400000, guid: d25be1b1296f947479afdc6ea6b56763, type: 2}
+  - {fileID: 11400000, guid: 149e91baa833dc24787f345ed3fe8b6d, type: 2}
+  - {fileID: 11400000, guid: feb485be2e92ec349b0061b62772fe44, type: 2}
+  - {fileID: 11400000, guid: 1f7d5c7b3e81b924e94a9a679707dbf9, type: 2}
+  - {fileID: 11400000, guid: 62ae57ffab40eb842bd6d844d4aa3457, type: 2}
+  - {fileID: 11400000, guid: dd0433563666b2840b55b96772393540, type: 2}
+  - {fileID: 11400000, guid: c28c1884d762e634da5008bbd2305978, type: 2}
+  - {fileID: 11400000, guid: 29470e4e5a222d8459f9b8345c1a52f8, type: 2}
+  - {fileID: 11400000, guid: fee6d07e755510546aa14b840446969c, type: 2}
+  - {fileID: 11400000, guid: e927dd4dd970146498f08d0537003753, type: 2}
+  - {fileID: 11400000, guid: b74aee2380ff20d42b6e892667724859, type: 2}
+  - {fileID: 11400000, guid: 82d3392af7a73a248bad0bad31392822, type: 2}
+  - {fileID: 11400000, guid: 195fe5d5c33151a46a386c3ea5a4c8a8, type: 2}
+  - {fileID: 11400000, guid: dc7674801ea8f434db1bc2b8dbd41bc5, type: 2}
+  - {fileID: 11400000, guid: fbe0e99161ac8fe40b42f1e89fe9c68c, type: 2}
+  - {fileID: 11400000, guid: 42a269f8557cf304f8e741b60bad7e7a, type: 2}
+  - {fileID: 11400000, guid: f7ecb1f8b670f6f45a8e745731e1986b, type: 2}
+  - {fileID: 11400000, guid: cc947aae0be5d2c458dec59de748f55e, type: 2}
+  - {fileID: 11400000, guid: 091451ae803303740b6a474340663ed9, type: 2}
+  - {fileID: 11400000, guid: 0742bab53242f7b47ba2cdac9c7e8618, type: 2}
+  - {fileID: 11400000, guid: 576e2120a6cd6ce49898827c7d46d83f, type: 2}
+  - {fileID: 11400000, guid: f63ed1a4ac81f9b4083526eafe12df15, type: 2}
+  - {fileID: 11400000, guid: 5404f14ba6991034fbfb153d048ce57a, type: 2}
+  - {fileID: 11400000, guid: 1ecfe44fcb8569d49845693fb53f53a0, type: 2}
+  - {fileID: 11400000, guid: b43a1725406d22149b819cd2539cd427, type: 2}
+  - {fileID: 11400000, guid: d82fe3b8cce9fbc45b0b656b3d8a21bb, type: 2}
+  - {fileID: 11400000, guid: d81707291b48cd6478cc8f414cd492bf, type: 2}
+  - {fileID: 11400000, guid: cd223ba959fa39046b3cc1385c726b37, type: 2}
+  - {fileID: 11400000, guid: c221fbb0b33e470488791a09c793464a, type: 2}
+  - {fileID: 11400000, guid: 62f6c04ac83b66b4db229eec06ba3b1a, type: 2}
+  - {fileID: 11400000, guid: 1dff65c73da065b41ac6dc0a38516196, type: 2}
+  - {fileID: 11400000, guid: 90bd8db2a36d865419f09c068b7e02fa, type: 2}
+  - {fileID: 11400000, guid: 50a7a6e939ec9dd45acef9366202d8bc, type: 2}
+  - {fileID: 11400000, guid: 4137dff43df917748bbe681c22111cec, type: 2}
+  - {fileID: 11400000, guid: f1a46df2e55426d48b581c6192355903, type: 2}
   _clothePrefab: {fileID: 1798879174225505031, guid: c12a660aa695f6a4eac84086fce31129, type: 3}
+  _shopScrollRect: {fileID: 0}
 --- !u!50 &3155904955203610593
 Rigidbody2D:
   serializedVersion: 4

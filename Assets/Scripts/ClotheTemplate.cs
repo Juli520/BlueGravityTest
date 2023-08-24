@@ -4,7 +4,6 @@ using TMPro;
 
 public class ClotheTemplate : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private Image _clotheImage;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _sellButton;
@@ -21,13 +20,21 @@ public class ClotheTemplate : MonoBehaviour
     {
         _clothe = newClothe;
         
-        if(InventoryManager.Instance.IsInInventory(_clothe))
+        if(UIManager.Instance.IsShopOpen || _clothe.cantTrade)
         {
-            _sellButton.gameObject.SetActive(true);
+            if (InventoryManager.Instance.IsInInventory(_clothe))
+            {
+                _sellButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                _buyButton.gameObject.SetActive(true);
+            }
         }
         else
         {
-            _buyButton.gameObject.SetActive(true);
+            _sellButton.gameObject.SetActive(false);
+            _buyButton.gameObject.SetActive(false);
         }
         
         SetUI();
@@ -35,11 +42,6 @@ public class ClotheTemplate : MonoBehaviour
 
     private void SetUI()
     {
-        if(_clothe.name != "")
-        {
-            _nameText.text = _clothe.name;
-        }
-        
         if(_clothe.cost != 0)
         {
             _costText.text = InventoryManager.Instance.IsInInventory(_clothe)
