@@ -13,12 +13,16 @@ public class Player : MonoBehaviour
     private float _horizontalMovement;
     private float _verticalMovement;
     private Rigidbody2D _rb;
+    private Animator _playerAnimator;
     
     #endregion
+
+    #region Monobehaviour Functions
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -31,6 +35,10 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    #endregion
+
+    #region Private Functions
+
     private void Move()
     {
         _horizontalMovement = Input.GetAxis("Horizontal");
@@ -38,6 +46,16 @@ public class Player : MonoBehaviour
         
         var movementDirection = new Vector2(_horizontalMovement, _verticalMovement);
 
+        if(movementDirection != Vector2.zero)
+        {
+            _playerAnimator.SetBool("isWalking", true);
+            transform.eulerAngles = new Vector3 (0, _horizontalMovement < 0 ? 180 : 0, 0);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isWalking", false);
+        }
+        
         _rb.velocity = movementDirection * _speed;
     }
 
@@ -46,11 +64,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Pause();
         }
         
         if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I))
@@ -73,19 +86,21 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.TryGetComponent<ClothesShop>(out var clothesShop))
             {
-                EventManager.Instance.Trigger(NameEvent.OnShopOpened);
+                if(!UIManager.Instance.IsShopOpen)
+                {
+                    EventManager.Instance.Trigger(NameEvent.OnShopOpened);
+                }
                 break;
             }
         }
     }
 
-    private void Pause()
-    {
-        
-    }
-
     private void Inventory()
     {
-        EventManager.Instance.Trigger(NameEvent.OnInventoryOpened);
+        EventManager.Instance.Trigger(!InventoryManager.Instance.IsInventoryOpen
+            ? NameEvent.OnInventoryOpened
+            : NameEvent.OnInventoryClosed);
     }
+
+    #endregion
 }

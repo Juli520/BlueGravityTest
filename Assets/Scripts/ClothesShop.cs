@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClothesShop : MonoBehaviour
 {
     [SerializeField] private List<Clothe> _clothes = new();
     [SerializeField] private ClotheTemplate _clothePrefab;
+    [SerializeField] private Transform _shopScrollRect;
     private List<ClotheTemplate> _currentClothes = new();
+    private ClotheType _currentType;
 
+    #region Monobehaviour Functions
+    
     private void Start()
     {
         EventManager.Instance.Subscribe(NameEvent.OnShopOpened, OnShopOpened);
         EventManager.Instance.Subscribe(NameEvent.OnShopClosed, OnShopClosed);
         EventManager.Instance.Subscribe(NameEvent.OnClotheBought, OnClothBought);
         EventManager.Instance.Subscribe(NameEvent.OnClotheSold, OnClothSold);
+        EventManager.Instance.Subscribe(NameEvent.OnClotheTypeChanged, OnClotheTypeChanged);
+        _currentType = UIManager.Instance.CurrentType;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -23,30 +31,22 @@ public class ClothesShop : MonoBehaviour
             EventManager.Instance.Trigger(NameEvent.OnShopClosed);
         }
     }
-    
+
+    #endregion
+
+    #region Private Functions
+
     //This is a coroutine to wait until the inventory removes the clothe from the list
     private IEnumerator CreateTemplate(Clothe newClothe)
     {
         yield return new WaitForSeconds(.1f);
-        
-        var parent = UIManager.Instance.GetParent(false);
-        var template = Instantiate(_clothePrefab, parent);
+
+        var template = Instantiate(_clothePrefab, _shopScrollRect);
         template.SetClothe(newClothe);
         _currentClothes.Add(template);
-        
     }
 
-    #region Events Functions
-    
-    private void OnShopOpened(object[] parameters)
-    {
-        foreach (var clothe in _clothes)
-        {
-            StartCoroutine(CreateTemplate(clothe));
-        }
-    }
-
-    private void OnShopClosed(object[] parameters)
+    private void ClearList()
     {
         foreach (var clothe in _currentClothes)
         {
@@ -55,8 +55,25 @@ public class ClothesShop : MonoBehaviour
         
         _currentClothes.Clear();
     }
+
+    #endregion
+
+    #region Events Functions
     
-    private void OnClothBought(object[] parameters)
+    private void OnShopOpened(params object[] parameters)
+    {
+        foreach (var clothe in _clothes.Where(clothe => clothe.clotheType == _currentType))
+        {
+            StartCoroutine(CreateTemplate(clothe));
+        }
+    }
+
+    private void OnShopClosed(params object[] parameters)
+    {
+        ClearList();
+    }
+    
+    private void OnClothBought(params object[] parameters)
     {
         var clothe = (Clothe) parameters[0];
         var index = _clothes.IndexOf(clothe);
@@ -65,11 +82,21 @@ public class ClothesShop : MonoBehaviour
         _clothes.Remove(clothe);
     }
     
-    private void OnClothSold(object[] parameters)
+    private void OnClothSold(params object[] parameters)
     {
         var clothe = (Clothe) parameters[0];
         _clothes.Add(clothe);
         StartCoroutine(CreateTemplate(clothe));
+    }
+
+    private void OnClotheTypeChanged(params object[] parameters)
+    {
+        _currentType = (ClotheType) parameters[0];
+        ClearList();
+        foreach (var clothe in _clothes.Where(clothe => clothe.clotheType == _currentType))
+        {
+            StartCoroutine(CreateTemplate(clothe));
+        }
     }
     
     #endregion
