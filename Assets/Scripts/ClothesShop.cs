@@ -9,7 +9,7 @@ public class ClothesShop : MonoBehaviour
     [SerializeField] private List<Clothe> _clothes = new();
     [SerializeField] private ClotheTemplate _clothePrefab;
     [SerializeField] private Transform _shopScrollRect;
-    private List<ClotheTemplate> _currentClothes = new();
+    private List<ClotheTemplate> _currentTemplateClothes = new();
     private ClotheType _currentType;
 
     #region Monobehaviour Functions
@@ -43,17 +43,17 @@ public class ClothesShop : MonoBehaviour
 
         var template = Instantiate(_clothePrefab, _shopScrollRect);
         template.SetClothe(newClothe);
-        _currentClothes.Add(template);
+        _currentTemplateClothes.Add(template);
     }
 
     private void ClearList()
     {
-        foreach (var clothe in _currentClothes)
+        foreach (var clothe in _currentTemplateClothes)
         {
             Destroy(clothe.gameObject);
         }
         
-        _currentClothes.Clear();
+        _currentTemplateClothes.Clear();
     }
 
     #endregion
@@ -77,8 +77,9 @@ public class ClothesShop : MonoBehaviour
     {
         var clothe = (Clothe) parameters[0];
         var index = _clothes.IndexOf(clothe);
-        Destroy(_currentClothes[index].gameObject);
-        _currentClothes.RemoveAt(index);
+        var templateIndex = index % _currentTemplateClothes.Count;
+        Destroy(_currentTemplateClothes[templateIndex].gameObject);
+        _currentTemplateClothes.RemoveAt(templateIndex);
         _clothes.Remove(clothe);
     }
     

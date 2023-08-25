@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private GameObject _outfitChangerPanel;
     [SerializeField] private TextMeshProUGUI _moneyText;
+    [SerializeField] private TextMeshProUGUI _missingMoneyText;
     private int _currentTypeIndex;
     private bool _isShopOpen;
     public bool IsShopOpen => _isShopOpen;
@@ -25,6 +26,11 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
         EventManager.Instance.Subscribe(NameEvent.OnMoneyUpdated, OnMoneyUpdated);
         EventManager.Instance.Subscribe(NameEvent.OnInventoryOpened, OnInventoryOpened);
         EventManager.Instance.Subscribe(NameEvent.OnInventoryClosed, OnInventoryClosed);
+    }
+    
+    public void ChangeMissingMoneyText(bool enable)
+    {
+        _missingMoneyText.gameObject.SetActive(enable);
     }
 
     public void NextType()
@@ -55,6 +61,10 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
     
     private void OnShopOpened(params object[] parameters)
     {
+        if(InventoryManager.Instance.IsInventoryOpen)
+        {
+            EventManager.Instance.Trigger(NameEvent.OnInventoryClosed);
+        }
         _shopPanel.SetActive(true);
         _inventoryPanel.SetActive(true);
         _isShopOpen = true;
@@ -74,6 +84,10 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
     
     private void OnInventoryOpened(params object[] parameters)
     {
+        if(_isShopOpen)
+        {
+            EventManager.Instance.Trigger(NameEvent.OnShopClosed);
+        }
         _outfitChangerPanel.SetActive(true);
     }
 

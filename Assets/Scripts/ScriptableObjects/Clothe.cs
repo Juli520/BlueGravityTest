@@ -1,13 +1,19 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Clothe", menuName = "Blue Gravity/Clothe", order = 1)]
 public class Clothe : ScriptableObject
 {
-    public int cost;
     public Sprite clotheSprite;
     public ClotheType clotheType;
     public bool cantTrade;
+    public int cost;
+
+    public void SetCost()
+    {
+        cost = Random.Range(10, 31);
+    }
 }
 
 [Serializable]
