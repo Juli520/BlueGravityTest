@@ -99087,6 +99087,10 @@ PrefabInstance:
       propertyPath: _bodyPart
       value: 
       objectReference: {fileID: 579199806}
+    - target: {fileID: 7726983218654474697, guid: 1b9507996b4fb024880be66e49e3dc01, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7726983218780744282, guid: 1b9507996b4fb024880be66e49e3dc01, type: 3}
       propertyPath: _bodyPart
       value: 

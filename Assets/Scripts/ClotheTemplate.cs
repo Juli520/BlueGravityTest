@@ -9,9 +9,11 @@ public class ClotheTemplate : MonoBehaviour
     [SerializeField] private Button _sellButton;
     [SerializeField] private Button _buyButton;
     private Clothe _clothe;
+    public Clothe Clothe => _clothe;
 
     private void Start()
     {
+        _clothe.SetCost();
         _buyButton.onClick.AddListener(OnBuyButtonClicked);
         _sellButton.onClick.AddListener(OnSellButtonClicked);
     }
@@ -60,18 +62,24 @@ public class ClotheTemplate : MonoBehaviour
         var playerMoney = GameManager.Instance.CurrentMoney;
         if (playerMoney >= _clothe.cost)
         {
+            UIManager.Instance.ChangeMissingMoneyText(false);
             GameManager.Instance.RemoveMoney(_clothe.cost);
             EventManager.Instance.Trigger(NameEvent.OnClotheBought, _clothe);
         }
         else
         {
-            Debug.Log("Not enough money");
+            UIManager.Instance.ChangeMissingMoneyText(true);
         }
     }
     
     private void OnSellButtonClicked()
     {
-        GameManager.Instance.AddMoney(_clothe.cost / 2);
+        var clotheCost = _clothe.cost / 2;
+        if (clotheCost % 2 != 0)
+        {
+            clotheCost++;
+        }
+        GameManager.Instance.AddMoney(clotheCost);
         EventManager.Instance.Trigger(NameEvent.OnClotheSold, _clothe);
     }
 }

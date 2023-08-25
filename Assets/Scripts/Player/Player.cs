@@ -75,6 +75,11 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.AddMoney();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void Interact()
@@ -86,7 +91,11 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.TryGetComponent<ClothesShop>(out var clothesShop))
             {
-                if(!UIManager.Instance.IsShopOpen)
+                if(UIManager.Instance.IsShopOpen)
+                {
+                    EventManager.Instance.Trigger(NameEvent.OnShopClosed);
+                }
+                else
                 {
                     EventManager.Instance.Trigger(NameEvent.OnShopOpened);
                 }
