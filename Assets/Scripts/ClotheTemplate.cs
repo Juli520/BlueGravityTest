@@ -13,7 +13,6 @@ public class ClotheTemplate : MonoBehaviour
 
     private void Start()
     {
-        _clothe.SetCost();
         _buyButton.onClick.AddListener(OnBuyButtonClicked);
         _sellButton.onClick.AddListener(OnSellButtonClicked);
     }

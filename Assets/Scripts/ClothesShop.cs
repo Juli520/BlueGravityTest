@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ClothesShop : MonoBehaviour
 {
     [SerializeField] private List<Clothe> _clothes = new();
     [SerializeField] private ClotheTemplate _clothePrefab;
     [SerializeField] private Transform _shopScrollRect;
+    [SerializeField] private GameObject _sign;
     private List<ClotheTemplate> _currentTemplateClothes = new();
     private ClotheType _currentType;
 
@@ -24,10 +25,19 @@ public class ClothesShop : MonoBehaviour
         _currentType = UIManager.Instance.CurrentType;
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.CompareTag("Player"))
+        {
+            _sign.SetActive(true);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            _sign.SetActive(false);
             EventManager.Instance.Trigger(NameEvent.OnShopClosed);
         }
     }

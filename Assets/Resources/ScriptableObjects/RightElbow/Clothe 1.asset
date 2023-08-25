@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44e1a3ffefa00c4f97d4d3f58c62ae8, type: 3}
   m_Name: Clothe 1
   m_EditorClassIdentifier: 
-  cost: 0
   clotheSprite: {fileID: 21300000, guid: 48ecbe245379f214497aae538fe1d4f3, type: 3}
   clotheType: 6
   cantTrade: 1
+  cost: 20
